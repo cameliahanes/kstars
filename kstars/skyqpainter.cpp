@@ -405,6 +405,31 @@ bool SkyQPainter::drawPlanet(KSPlanetBase* planet)
     return true;
 }
 
+bool SkyQPainter::drawComet(KSPlanetBase* comet)
+{
+    if (!m_proj->checkVisibility(comet) ) return false;
+    bool visible = false;
+    QPointF pos = m_proj->toScreen(comet, true, &visible);
+    if ( !visible || !m_proj->onScreen(pos) ) return false;
+    float fakeCometSize = (10.0 + log10(Options::zoomFactor() ) - log10(MINZOOM) ) * (10 - comet->mag()) /10;
+    if ( fakeCometSize > 15.0)
+        fakeCometSize = 15.0;
+    float size = comet->angSize() * dms::PI * Options::zoomFactor()/1000.0;
+    if ( size < 2.0 )
+        size = 3.0;
+    save();
+    translate(pos);
+    save();
+    rotate(m_proj->findPA(comet, pos.x(), pos.y() ) );
+    save();
+    if ( Options::showComets() && !comet->image().isNull() ){
+    drawImage(QRect(-0.5*size, -0.5*size, size, size), comet->image() );
+    restore();
+    return true;}
+        return true;
+}
+
+
 bool SkyQPainter::drawPointSource(SkyPoint* loc, float mag, char sp)
 {
     //Check if it's even visible before doing anything
