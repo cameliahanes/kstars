@@ -733,6 +733,9 @@ void KStars::slotViewOps() {
     page = dialog->addPage(opsolsys, i18n("Solar System"), "kstars_solarsystem");
     page->setIcon(QIcon::fromTheme("kstars_solarsystem", QIcon(":/icons/breeze/default/kstars_solarsystem.svg")));
 
+    page = dialog->addPage(opsolsys, i18n("Comets"), "kstars_comets");
+    page->setIcon(QIcon::fromTheme("kstars_comets", QIcon(":/icons/breeze/default/kstars_comets.svg")));
+  
     page = dialog->addPage(opssatellites, i18n("Satellites"), "kstars_satellites");
     page->setIcon(QIcon::fromTheme("kstars_satellites", QIcon(":/icons/breeze/default/kstars_satellites.svg")));
 
