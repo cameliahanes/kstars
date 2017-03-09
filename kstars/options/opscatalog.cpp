@@ -88,6 +88,7 @@ OpsCatalog::OpsCatalog()
              SLOT( slotSetDrawStarZoomOutMagnitude(double) ) );
     */
     connect( kcfg_ShowStars, SIGNAL( toggled(bool) ), SLOT( slotStarWidgets(bool) ) );
+    connect( kcfg_ShowComets, SIGNAL( toggled(bool) ), SLOT( slotCometWidgets(bool) )  );
     connect( kcfg_ShowDeepSky, SIGNAL( toggled(bool) ), SLOT( slotDeepSkyWidgets(bool) ) );
     connect( kcfg_ShowDeepSkyNames, SIGNAL( toggled(bool) ), kcfg_DeepSkyLongLabels, SLOT( setEnabled(bool) ) );
     connect( m_ConfigDialog->button(QDialogButtonBox::Apply), SIGNAL( clicked() ), SLOT( slotApply() ) );
