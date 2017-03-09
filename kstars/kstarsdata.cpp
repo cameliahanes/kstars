@@ -1095,5 +1095,5 @@ ImageExporter * KStarsData::imageExporter()
     return m_ImageExporter;
 }
 #endif
-
+   
 
