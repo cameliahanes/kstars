@@ -131,9 +131,17 @@ public:
         */
     virtual bool drawPlanet(KSPlanetBase *planet) =0;
 
+    /**
+     * @brief drawComet - draws a comet
+     * @param comet
+     * @return true if the comet was drawn
+     */
+    virtual bool drawComet(KSPlanetBase *comet) =0;
+
     /** @short Draw the symbols for the observing list
         @param obs the oberving list
         */
+
     virtual void drawObservingList( const QList<SkyObject*>& obs ) = 0;
 
     /** @short Draw flags
