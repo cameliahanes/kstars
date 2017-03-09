@@ -71,6 +71,7 @@ void OpsSolarSystem::slotAsteroidWidgets( bool on ) {
 }
 
 void OpsSolarSystem::slotCometWidgets( bool on ) {
+    kcfg_ShowComets->setEnabled( on );
     kcfg_ShowCometNames->setEnabled( on );
     kcfg_MaxRadCometName->setEnabled( on );
     textLabel4->setEnabled( on );
