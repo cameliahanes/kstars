@@ -54,6 +54,8 @@ bool CometsComponent::selected() {
     return Options::showComets();
 }
 
+
+
 /*
  * @short Initialize the comets list.
  * Reads in the comets data from the comets.dat file.
@@ -184,7 +186,7 @@ void CometsComponent::loadData() {
         objectLists( SkyObject::COMET ).append(QPair<QString, const SkyObject*>(com->name(),com));
     }
 }
-
+/*
 void CometsComponent::draw( SkyPainter *skyp )
 {
     Q_UNUSED(skyp)
@@ -213,6 +215,30 @@ void CometsComponent::draw( SkyPainter *skyp )
     }
 #endif
 }
+*/
+
+void CometsComponent::draw( SkyPainter *skyp ){
+    Q_UNUSED(skyp)
+#ifndef KSTARS_LITE
+    if( !selected() || Options::zoomFactor() < 10*MINZOOM )
+        return;
+
+    bool hideLabels = ! Options::showCometNames() ||
+            ( SkyMap::Instance()->isSlewing() && Options::hideLabels() );
+    double rsunLabelLimit = Options::maxRadCometName();
+
+    foreach ( SkyObject *so, m_ObjectList ){
+        KSComet *comet = (KSComet*) so;
+        double mag = comet->mag();
+        if (std::isnan(mag) == 0 ){
+            bool drawn = skyp->drawComet(comet);
+            if ( drawn && !(hideLabels || comet->rsun() >= rsunLabelLimit) )
+                SkyLabeler::AddLabel( comet, SkyLabeler::COMET_LABEL );
+        }
+    }
+#endif
+}
+
 
 void CometsComponent::updateDataFile()
 {
