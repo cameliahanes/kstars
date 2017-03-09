@@ -524,6 +524,11 @@ void KStars::initActions() {
         << i18nc("Toggle Solar System objects in the display", "Solar System" )
         << QIcon::fromTheme("kstars_planets" , QIcon(":/icons/breeze/default/kstars_planets.svg"))
         << ToolTip( i18n("Toggle Solar system objects") );
+    actionCollection()->add<KToggleAction>("show_comets", this, SLOT( slotViewToolBar() ) )
+	<< i18nc("Toggle Solar System objects in the display", "Solar System" )
+	<< QIcon::fromTheme("kstars_comets", QIcon(":/icons/breeze/default/kstars_comets.svg"))
+	<< ToolTip( i18n("Toggle Solar System Objects") );
+    
     actionCollection()->add<KToggleAction>("show_clines", this, SLOT( slotViewToolBar() ) )
         << i18nc("Toggle Constellation Lines in the display", "Const. Lines" )
         << QIcon::fromTheme("kstars_clines" , QIcon(":/icons/breeze/default/kstars_clines.svg"))
